@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user.model';
-import { BehaviorSubject, Observable, map} from 'rxjs'
+import { BehaviorSubject, Observable, map, catchError, of} from 'rxjs'
 import { config } from '../config/application.config';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
@@ -40,7 +40,8 @@ export class OauthService{
                 this.currentUserSubject.next(mUser);
             }
             return mUser;
-        }));
+        })
+        );
     }
 
     logout() {

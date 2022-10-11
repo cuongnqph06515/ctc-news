@@ -1,21 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DefaultLayoutComponent } from './containers';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './views/login/login.component';
+
 
 const routes: Routes = [
-  
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin-pages/admin.module').then((m)=> m.AdminModule),
-    // canActivate: [AuthGuard]
-  },
-  {
-    path: 'user',
-    loadChildren: () => import('./user-pages/user.module').then((m)=> m.UserModule),
-    canActivate: [AuthGuard]
-  },
   {
     path: 'login',
     component: LoginComponent,
@@ -23,13 +14,50 @@ const routes: Routes = [
   },
   {
     path:'',
-    redirectTo: 'login',
+    redirectTo: 'user',
     pathMatch: 'full',
   },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path:'dashboard',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then((m)=> m.DashboardModule),
+      },
+      {
+        path:'sender',
+        loadChildren: () => import('./views/sender/sender.module').then((m)=> m.SenderModule),
+      },
+      {
+        path:'category',
+        loadChildren: () => import('./views/category/category.module').then((m)=> m.CategoryModule),
+      },
+      {
+        path:'product',
+        loadChildren: () => import('./views/product/product.module').then((m)=> m.ProductModule),
+      },
+      {
+        path:'role',
+        loadChildren: () => import('./views/role-management/role.module').then((m)=> m.RoleModule),
+      },
+      {
+        path:'user',
+        loadChildren: () => import('./views/user-management/user.module').then((m)=> m.UserModule),
+      }
+    ]
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard'
+  // }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

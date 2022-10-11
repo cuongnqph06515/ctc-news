@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <span *ngIf="userName==0">Create User</span>
+                <span *ngIf="userName!=0">Update User</span>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="validationServer01" class="form-label">* Fullname:</label>
+                        <input type="text" formControlName="fullname" 
+                        [class]="['form-control', userForm.get('fullname').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer01">
+                        <div *ngIf="userForm.get('fullname').errors && isSubmit" class="message-err">
+                            <span *ngIf="userForm.get('fullname').errors.required"> Fullname is required</span>
+                            <span *ngIf="userForm.get('fullname').errors.whitespace"> Fullname only white space is incorrect</span> 
+                            <span
+                                *ngIf="userForm.get('fullname').errors.pattern && !userForm.get('fullname').errors.whitespace">
+                                 Enter a minimum of 6 characters and a maximum of 64</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationServer02" class="form-label">* Email:</label>
+                        <input type="text" formControlName="email" 
+                        [class]="['form-control', userForm.get('email').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer02">
+                        <div *ngIf="userForm.get('email').errors && isSubmit">
+                            <span *ngIf="userForm.get('email').errors.required">Email is required</span>
+                            <span *ngIf="userForm.get('email').errors.whitespace">
+                                Email only whitespace is incorrect
+                            </span>
+                            <span *ngIf="userForm.get('email').errors.pattern && !userForm.get('email').errors.whitespace">
+                                Ex: example@gmail.com
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2"> 
+                        <label for="validationServer03" class="form-label">* Gender:</label>
+                        <select class="form-select" formControlName="gender"
+                        [class]="['form-control', userForm.get('gender').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer03">
+                            <option selected disabled value="">Gender...</option>
+                            <option value="0">Male</option>
+                            <option value="1">Female</option>
+                            <option value="2">Other</option>
+                        </select>
+                        <div *ngIf="userForm.get('gender').errors && isSubmit">
+                            <span *ngIf="userForm.get('gender').errors.required">Choose role</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="validationServer04" class="form-label">* Username:</label>
+                        <input type="text" formControlName="username" 
+                        [class]="['form-control', userForm.get('username').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer04">
+                        <div *ngIf="userForm.get('username').errors && isSubmit" class="message-err">
+                            <span *ngIf="userForm.get('username').errors.required"> Fullname is required</span>
+                            <span *ngIf="userForm.get('username').errors.whitespace"> Fullname only white space is incorrect</span> 
+                            <span
+                                *ngIf="userForm.get('username').errors.pattern && !userForm.get('username').errors.whitespace">
+                                Enter a minimum of 6 characters and a maximum of 32</span>
+                            <span
+                                *ngIf="userForm.get('username').errors.usernameDuplicated">
+                                 Username is already used</span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="validationServer05" class="form-label">* Role:</label>
+                        <select class="form-select" formControlName="role"
+                        [class]="['form-control', userForm.get('role').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer05">
+                            <option selected disabled value="">Role...</option>
+                            <option *ngFor="let role of roleArray" value="{{role.id}}">{{role.role_name}}</option>
+                        </select>
+                        <div *ngIf="userForm.get('role').errors && isSubmit">
+                            <span *ngIf="userForm.get('role').errors.required">Choose gender</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="validationServer06" class="form-label">* Password:</label>
+                        <input type="password" formControlName="password"
+                        [class]="['form-control', userForm.get('password').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer06">
+                        <div *ngIf="userForm.get('password').errors && isSubmit" class="message-err">
+                            <span *ngIf="userForm.get('password').errors.required"> Password is required</span>
+                            <span *ngIf="userForm.get('password').errors.whitespace"> Password only white space is incorrect</span> 
+                            <span
+                                *ngIf="userForm.get('password').errors.pattern && !userForm.get('password').errors.whitespace">
+                                 Enter a minimum of 6 characters and a maximum of 32
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="validationServer07" class="form-label">* Comfirm password:</label>
+                        <input type="password" formControlName="confirm_password" 
+                        [class]="['form-control', userForm.get('confirm_password').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer07">
+                        <div *ngIf="userForm.get('confirm_password').errors && isSubmit">
+                            <span *ngIf="userForm.get('confirm_password').errors.required">Confirm password is required</span>
+                        </div>
+                        <!-- <pre>{{userForm.errors.valueNotMatch | json}}</pre> -->
+                        <div *ngIf="userForm.errors?.valueNotMatch && isSubmit">
+                            <span>Confirm password not match</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary me-2" type="submit">Save</button>
+                        <button class="btn btn-warning" type="button" routerLink="/user">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

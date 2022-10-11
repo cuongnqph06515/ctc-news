@@ -1,0 +1,25 @@
+
+@import "variables";
+
+$enable-ltr: true;
+$enable-rtl: true;
+
+@import "@coreui/coreui/scss/coreui";
+
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+
+@import "layout";
+
+@import "fixes";
+
+@import "examples";
+
+@import "custom";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+table{
+    width: 100%;
+}

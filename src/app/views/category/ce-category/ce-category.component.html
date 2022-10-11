@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <span *ngIf="categoryId==0">Create category</span>
+                <span *ngIf="categoryId!=0">Update category</span>
+            </div>
+            <div class="card-body"> 
+                <form [formGroup]="caregoryForm" (ngSubmit)="onSubmit()" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="validationServer01" class="form-label">* Category name:</label>
+                        <input type="text" formControlName="categoryName" 
+                        [class]="['form-control',caregoryForm.get('categoryName').errors && isSubmit ? 'is-invalid':'form-control']" id="validationServer01" required>
+                        <div *ngIf="caregoryForm.get('categoryName').errors && isSubmit" class="message-err">
+                            <span *ngIf="caregoryForm.get('categoryName').errors.required">* Nhập vào tên thể loại!</span>
+                            <span *ngIf="caregoryForm.get('categoryName').errors.whitespace">* Không được phép chỉ chứa khoảng
+                                trắng!</span> 
+                            <span
+                                *ngIf="caregoryForm.get('categoryName').errors.minlength && !caregoryForm.get('categoryName').errors.whitespace">
+                                * Nhập vào tối thiểu 6 và tối đa 64 ký tự!</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationServer02" class="form-label">Descriptions:</label>
+                        <input type="text" formControlName="descriptions" 
+                        [class]="['form-control',caregoryForm.get('descriptions').errors && isSubmit ?'is-invalid':'form-control']">
+                        <div *ngIf="caregoryForm.get('descriptions').errors && isSubmit" class="message-err">
+                            <span *ngIf="caregoryForm.get('descriptions').errors.whitespace">* Không được phép chỉ chứa khoảng
+                                trắng!</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary me-2" type="submit">Save</button>
+                        <button class="btn btn-warning" type="button" routerLink="/category">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
