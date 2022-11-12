@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from '../model/user.model';
-import { BehaviorSubject, Observable, map, catchError, of} from 'rxjs'
+import { BehaviorSubject, Observable, map} from 'rxjs'
 import { config } from '../config/application.config';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
@@ -14,7 +14,6 @@ export class OauthService{
 
     constructor(private http: HttpClient, private router: Router) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
     }
 
     public get currentUserValue(): User {
@@ -36,6 +35,7 @@ export class OauthService{
                 var mUser: User = new User();
                 mUser.username = token.username;
                 mUser.password = token.access_token;
+                mUser.role_id.id = token.authorities[0].authority;
                 localStorage.setItem(config.currentUser, JSON.stringify(mUser));
                 this.currentUserSubject.next(mUser);
             }

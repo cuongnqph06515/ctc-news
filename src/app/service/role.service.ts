@@ -31,4 +31,8 @@ export class RoleService{
     deleteRole(id : number): Observable<any>{
         return this.http.delete<Role>(`${config.apiUrl}/role/deleteRole/${id}`);
     }
+
+    getSidebarByRoleId(id: number): Observable<any>{
+        return this.http.get<any>(`${config.apiUrl}/role/getSidebarByRoleId/${id}`)
+    }
 }

@@ -98,7 +98,7 @@ export class CeUserComponent implements OnInit {
 
   getALlRole() {
     this.roleService.getAllRole().subscribe({
-      next: (response) => {
+      next: (response) =>{
         this.roleArray = response.data;
       }
     });

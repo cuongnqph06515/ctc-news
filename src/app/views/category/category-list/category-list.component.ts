@@ -1,10 +1,9 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CategoryService } from "src/app/service/category.service";
 import { Category } from "src/app/model/category.model";
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { config } from 'src/app/config/application.config';
-
 
 @Component({
   selector: 'app-category-list',
@@ -15,7 +14,8 @@ export class CategoryListComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'categoryName', 'descriptions', 'actions'];
   categoryArray: Category[]=[];
   subscription = Subscription.EMPTY;
-  constructor(private categoryService: CategoryService, private toastrService: ToastrService){
+  constructor(private categoryService: CategoryService, 
+    private toastrService: ToastrService){
   }
 
   ngAfterViewInit() {
@@ -57,5 +57,4 @@ export class CategoryListComponent implements AfterViewInit {
       timeOut: config.timeoutToast,
     });
   }
-  
 }

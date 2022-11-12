@@ -55,6 +55,15 @@ import { LoginComponent } from './views/login/login.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
+import { NzInputModule } from "ng-zorro-antd/input";
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from "ng-zorro-antd/form";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzCardModule } from "ng-zorro-antd/card";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzDividerModule } from "ng-zorro-antd/divider";
+import { HubModule } from './views/hub-management/hub.module';
+
 registerLocaleData(en);
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {

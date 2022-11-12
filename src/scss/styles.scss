@@ -6,8 +6,6 @@ $enable-rtl: true;
 
 @import "@coreui/coreui/scss/coreui";
 
-@import "@coreui/chartjs/scss/coreui-chartjs";
-
 
 @import "layout";
 
@@ -22,4 +20,14 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 table{
     width: 100%;
+}
+.ant-card-body{
+    padding: 0 !important;
+}
+nz-card{
+    height: 95vh;
+}
+.sidebar-role{
+    background-color: rgb(232, 239, 246) !important;
+    cursor: pointer;
 }

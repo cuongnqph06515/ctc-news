@@ -1,0 +1,52 @@
+<div nz-row>
+    <div nz-col [nzSpan]="24">
+      <nz-card style="width:100%;" nzTitle="Import management" >
+        <div nz-row>
+          <div nz-col [nzSpan]="24" style="float: right;">
+            <button nz-button [nzType]="'primary'" [routerLink]="['/import-management/ce-import', 0]">Add Import</button>
+          </div>
+        </div>
+        <nz-table #basicTable [nzData]="importList">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Code</th>
+              <th>Import Date</th>
+              <th>Total quantity</th>
+              <th>Total product</th>
+              <th>Total money</th>
+              <th>Hub</th>
+              <th>Creator</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{ data.id }}</td>
+              <td>{{ data.code }}</td>
+              <td>{{ data.importDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ data.totalQuantity }}</td>
+              <td>{{ data.totalProduct }}</td>
+              <td>{{ data.totalMoney | number }} đ</td>
+              <td>{{ data.hub.hubName }}</td>
+              <td>{{ data.user.fullname }}</td>
+              <td>
+                <a href="# " [routerLink]="['/import-management/ce-import', data.id]" 
+                    style="margin-left: 10px; ">Update</a>
+                    <a style="color: red; cursor: pointer; margin-left: 10px;">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>  
+</div>
+
+<ng-template #addImport>
+  <div>
+    dnvkdsnvdsjvnjdksnvd
+  </div>
+</ng-template>
+
+      
+  

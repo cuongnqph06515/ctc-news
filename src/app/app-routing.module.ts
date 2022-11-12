@@ -46,12 +46,17 @@ const routes: Routes = [
         path:'user',
         loadChildren: () => import('./views/user-management/user.module').then((m)=> m.UserModule),
       }
+      ,
+      {
+        path:'hub',
+        loadChildren: () => import('./views/hub-management/hub.module').then((m)=> m.HubModule),
+      }
     ]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'dashboard'
-  // }
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({

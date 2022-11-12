@@ -1,0 +1,49 @@
+<div nz-row>
+    <div nz-col [nzSpan]="24">
+      <nz-card style="width:100%;" nzTitle="Hub management">
+        <nz-table #hub 
+        nzShowSizeChanger
+        [nzData]="hubList" 
+        [nzPageSize]="2" 
+        [nzPageIndex]="1">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Hotline</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of hub.data">
+              <td>{{ data.id }}</td>
+              <td>{{ data.code }}</td>
+              <td>{{ data.hubName }}</td>
+              <td>{{ data.address }}</td>
+              <td>{{ data.hotline }}</td>
+              <td>{{ data.description }}</td>
+              <td>
+                <a href="# " [routerLink]="['/hub/ce-hub', data.id]" 
+                    style="margin-left: 10px; ">Update</a>
+                    <a style="color: red; cursor: pointer; margin-left: 10px;">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+        <!-- <form [formGroup]="form">
+          <h1>Select</h1>
+          <app-select-control
+            modeDataSource
+            formControlName="mode"
+            placeholder="Select mode"
+          ></app-select-control>
+        </form> -->
+      </nz-card>
+    </div>  
+</div>
+
+      
+  

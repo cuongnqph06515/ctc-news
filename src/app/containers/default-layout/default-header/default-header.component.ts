@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
+import { OauthService } from 'src/app/service/oauth.service';
 
 @Component({
   selector: 'app-default-header',
@@ -15,9 +16,13 @@ export class DefaultHeaderComponent {
   public newTasks = new Array(5)
   public newNotifications = new Array(5)
 
-  constructor() {
+  constructor(private authService: OauthService) {
   }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

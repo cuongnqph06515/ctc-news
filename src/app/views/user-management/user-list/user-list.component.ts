@@ -11,7 +11,6 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserListComponent implements OnInit {
   
-  displayedColumns: string[] = ['id', 'role', 'code', 'fullname', 'email', 'actions'];
   userArray: User[] = [];
   constructor(private userService: UserService, private toastrService: ToastrService) { }
 
