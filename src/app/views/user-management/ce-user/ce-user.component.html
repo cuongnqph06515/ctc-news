@@ -14,11 +14,12 @@
                         <div *ngIf="userForm.get('fullname').errors && isSubmit" class="message-err">
                             <span *ngIf="userForm.get('fullname').errors.required"> Fullname is required</span>
                             <span *ngIf="userForm.get('fullname').errors.whitespace"> Fullname only white space is incorrect</span> 
-                            <span
-                                *ngIf="userForm.get('fullname').errors.pattern && !userForm.get('fullname').errors.whitespace">
-                                 Enter a minimum of 6 characters and a maximum of 64</span>
+                            <span *ngIf="userForm.get('fullname').errors.pattern && !userForm.get('fullname').errors.whitespace">
+                                 Enter a minimum of 6 characters and a maximum of 64
+                            </span>
                         </div>
                     </div>
+                    <pre>{{userForm.errors| json}}</pre>
                     <div class="col-md-4">
                         <label for="validationServer02" class="form-label">* Email:</label>
                         <input type="text" formControlName="email" 

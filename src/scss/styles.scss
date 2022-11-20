@@ -21,13 +21,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 table{
     width: 100%;
 }
+
 .ant-card-body{
+    margin: 10px 10px;
     padding: 0 !important;
+    height: 80vh;
 }
 nz-card{
-    height: 95vh;
-}
-.sidebar-role{
-    background-color: rgb(232, 239, 246) !important;
-    cursor: pointer;
+    height: 91vh;
 }

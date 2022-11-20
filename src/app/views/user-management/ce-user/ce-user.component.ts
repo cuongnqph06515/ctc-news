@@ -40,7 +40,7 @@ export class CeUserComponent implements OnInit {
       fullname: ['', Validators.compose([
         Validators.required,
         NoWhiteSpaceFn(),
-        Validators.pattern(/^[a-z]{6,64}$/i)
+        Validators.pattern(/^[a-z ]{6,64}$/i)
       ])
       ],
       email: ['', Validators.compose([

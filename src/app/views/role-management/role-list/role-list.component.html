@@ -3,7 +3,7 @@
   <div nz-col [nzSpan]="24">
     <nz-card nzTitle="Hub management" [nzExtra]="buttonAdd">
       <nz-table #role [nzData]="roleArray"
-      nzShowSizeChanger
+         nzShowSizeChanger
         [nzPageSize]="10" 
         [nzPageIndex]="1"
         sty>
@@ -18,45 +18,23 @@
         </thead>
         <tbody>
           <ng-container *ngFor="let data of role.data">
-            <tr style="cursor: pointer;" (click)="showExpand(data)" >
+            <tr>
               <td>{{ data.id }}</td>
               <td>{{ data.role_code }}</td>
               <td>{{ data.role_name }}</td>
               <td>{{ data.description }}</td>
               <td>
-                <a href="# " [routerLink]="['/hub/ce-hub', data.id]" 
-                    style="margin-left: 10px;">Update</a>
-                <a style="color: red; cursor: pointer; margin: 0 10px;">Delete</a>
-                <span nz-icon [nzType]="data.expand ? 'up':'down'"></span>
+                <a [routerLink]="['/role/ce-role', data.id]"
+                nz-tooltip
+                nzTooltipTitle="update hub" 
+                nzTooltipPlacement="top">Update</a>
+
+                <a style="margin: 0 10px;color: red;"
+                nz-tooltip
+                nzTooltipTitle="delete hub" 
+                nzTooltipPlacement="top">Delete</a>
               </td>
             </tr>
-            <ng-container *ngFor="let sidebarRole of data.sidebar">
-              <tr *ngIf="data.expand" class="sidebar-role">
-                  <td><label nz-checkbox [(ngModel)]="sidebarRole.sidebar.checked"></label></td>
-                  <td>{{sidebarRole.sidebar.icon}}</td>
-                  <td>{{sidebarRole.sidebar.url}}</td> 
-                  <td>{{sidebarRole.sidebar.name}}</td>
-                  <td>{{sidebarRole.permission.name}}</td>
-              </tr>
-            </ng-container>
-            <tr *ngIf="data.expand">
-              <td>
-                <label nz-checkbox [(ngModel)]="checked">Check all</label>
-              </td>
-              <td colspan="4" style="text-align: center;">
-                <span nz-icon nzType="delete" nzTheme="outline" style="padding: 0 20px; cursor: pointer;"
-                [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"
-                nz-tooltip
-                nzTooltipTitle="Remove Sidebar" 
-                nzTooltipPlacement="top"></span>
-
-                <span nz-icon nzType="appstore-add" nzTheme="outline" style="cursor: pointer;"
-                [nzTwotoneColor]="'#52c41a'"
-                nz-tooltip
-                nzTooltipTitle="Add Sidebar" 
-                nzTooltipPlacement="top"></span>
-              </td>
-          </tr>
           </ng-container>
 
         </tbody>

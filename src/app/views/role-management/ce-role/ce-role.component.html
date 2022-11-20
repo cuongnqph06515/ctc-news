@@ -1,11 +1,76 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-              <span>Create Role</span>
-            </div>
-            <div class="card-body">
-            </div>
+<!-- ng.ant.design-->
+<div nz-row>
+    <div nz-col [nzSpan]="24">
+      <nz-card nzTitle="Create role" class="content">
+        <div nz-row>
+          <div nz-col [nzSpan]="12">
+            <form nz-form>
+              <nz-form-item>
+                <nz-form-label [nzSpan]="4" nzRequired>Role code</nz-form-label>
+                <nz-form-control nzHasFeedback [nzSpan]="18" nzErrorTip="Input is required">
+                  <input nz-input [ngModel]="'RC0439494'" name="required" nzSize="large" required />
+                </nz-form-control>
+              </nz-form-item>
+    
+              <nz-form-item>
+                <nz-form-label [nzSpan]="4" nzRequired>Role name</nz-form-label>
+                <nz-form-control nzHasFeedback [nzSpan]="18" nzErrorTip="Input is required">
+                  <input nz-input [ngModel]="''" name="required" nzSize="large" required />
+                </nz-form-control>
+              </nz-form-item>
+    
+              <nz-form-item>
+                <nz-form-label [nzSpan]="4">Description</nz-form-label>
+                <nz-form-control [nzSpan]="18" nzErrorTip="Please write desciption in here!">
+                  <textarea formControlName="comment" nz-input rows="4" placeholder="write any thing" ></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </form>
+          </div>
+          <!-- permission-->
+          <div nz-col [nzSpan]="12">
+            <table>
+              <nz-table #role [nzData]=""
+              nzShowSizeChanger
+             [nzPageSize]="10" 
+             [nzPageIndex]="1"
+             sty>
+             <thead>
+               <tr>
+                 <th>Id</th>
+                 <th>Code</th>
+                 <th>Name</th>
+                 <th>Desciption</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               <ng-container *ngFor="let data of role.data">
+                 <tr>
+                   <td>{{ data.id }}</td>
+                   <td>{{ data.role_code }}</td>
+                   <td>{{ data.role_name }}</td>
+                   <td>{{ data.description }}</td>
+                   <td>
+                     <a [routerLink]="['/role/ce-role', data.id]"
+                     nz-tooltip
+                     nzTooltipTitle="update hub" 
+                     nzTooltipPlacement="top">Update</a>
+     
+                     <a style="margin: 0 10px;color: red;"
+                     nz-tooltip
+                     nzTooltipTitle="delete hub" 
+                     nzTooltipPlacement="top">Delete</a>
+                   </td>
+                 </tr>
+               </ng-container>
+  
+             </tbody>
+           </nz-table> 
+            </table>
+          </div>
         </div>
-    </div>
-</div>
+
+      </nz-card>
+    </div>  
+  </div>

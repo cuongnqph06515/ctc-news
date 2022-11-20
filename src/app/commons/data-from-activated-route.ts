@@ -9,8 +9,8 @@ export function routeParamMapFactory(paramKey: string):
             };
 }
 export function routeSnapshotParamFactory(paramKey: string): 
-    (route: ActivatedRoute) => string | null {
-        return (route: ActivatedRoute): string | null =>{
+    (route: ActivatedRoute) => string | null | number {
+        return (route: ActivatedRoute): string | null | number=>{
             return route.snapshot.paramMap.get(paramKey);
         }
 }
@@ -21,8 +21,8 @@ export function routeQueryParamFactory(paramKey: string):
     }
 }
 export function routeSnapshotQueryFactory(paramKey: string): 
-    (route: ActivatedRoute) => string | null{
-    return function(route: ActivatedRoute): string | null{
+    (route: ActivatedRoute) => string | null | number{
+    return function(route: ActivatedRoute): string | null | number{
         return route.snapshot.queryParamMap.get(paramKey);
     }
 }
